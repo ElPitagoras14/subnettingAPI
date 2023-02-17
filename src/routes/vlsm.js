@@ -13,7 +13,7 @@ router.post("/unsorted", (req, res, next) => {
     return responses.success(res, response);
   } catch (err) {
     console.error(err);
-    return responses.unknowError(res);
+    return responses.unknownError(res);
   }
 });
 
@@ -26,7 +26,7 @@ router.post("/sorted", (req, res, next) => {
     return responses.success(res, response);
   } catch (err) {
     console.error(err);
-    return responses.unknowError(res);
+    return responses.unknownError(res);
   }
 });
 

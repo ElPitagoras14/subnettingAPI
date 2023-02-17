@@ -13,12 +13,13 @@ router.post("/create", (req, res, next) => {
 
   try {
     const strTree = createStrSubnetTree(body);
+    console.log(strTree)
     return responses.success(res, {
       stringTree: strTree,
     });
   } catch (err) {
     console.error(err);
-    return responses.unknowError(res);
+    return responses.unknownError(res);
   }
 });
 
@@ -32,24 +33,24 @@ router.post("/save", (req, res, next) => {
     return fs.writeFile(file, strTree, (err) => {
       if (err) {
         console.error(err);
-        return responses.unknowError(res, "Error creating the file");
+        return responses.unknownError(res, "Error creating the file");
       }
       return res.download(file, (err) => {
         if (err) {
           console.error(err);
-          return responses.unknowError(res, "Error downloading the file");
+          return responses.unknownError(res, "Error downloading the file");
         }
         return fs.unlink(file, function (err) {
           if (err) {
             console.error(err);
-            return responses.unknowError(res, err);
+            return responses.unknownError(res, err);
           }
         });
       });
     });
   } catch (err) {
     console.error(err);
-    return responses.unknowError(res);
+    return responses.unknownError(res);
   }
 });
 

@@ -71,7 +71,7 @@ const flsmNetwork = (ip, mask, minNetwork) => {
       n,
       m,
       numOfNetworks: Math.pow(2, n),
-      hostPerNetwork: Math.pow(2, m) - 2,
+      hostPerNetwork: Math.pow(2, m),
     },
     networks,
   };
@@ -105,7 +105,7 @@ const vlsmHost = (ip, mask, hostList) => {
       broadcast,
     };
     ip = newIp;
-    fixedHostList.push(Math.pow(2, m) - 2);
+    fixedHostList.push(Math.pow(2, m));
     return networkInfo;
   });
 

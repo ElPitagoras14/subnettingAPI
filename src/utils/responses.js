@@ -7,7 +7,7 @@ class Response {
     });
   }
 
-  unknowError(res, err) {
+  unknownError(res, err) {
     return res.send({
       code: 500,
       message: "Internal Server Error",

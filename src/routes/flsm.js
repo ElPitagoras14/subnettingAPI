@@ -13,7 +13,7 @@ router.post("/host", (req, res, next) => {
     return responses.success(res, response);
   } catch (err) {
     console.error(err);
-    return responses.unknowError(res);
+    return responses.unknownError(res);
   }
 });
 
@@ -26,7 +26,7 @@ router.post("/network", (req, res, next) => {
     return responses.success(res, response);
   } catch (err) {
     console.error(err);
-    return responses.unknowError(res);
+    return responses.unknownError(res);
   }
 });
 
