@@ -3,14 +3,17 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./src/index"
+    "start": "node ./src/index",
+    "devstart": "set PORT=3001 & nodemon ./src/index"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "fs": "^0.0.1-security",
     "morgan": "~1.9.1",
+    "nodemon": "^2.0.20",
     "webpack-cli": "^5.0.1"
   },
   "devDependencies": {

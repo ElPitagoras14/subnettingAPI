@@ -8,7 +8,13 @@ const vlsmRouter = require("./routes/vlsm");
 const subnetTreeRouter = require("./routes/subnetTree");
 
 const app = express();
+const cors = require('cors');
 
+
+app.use(cors({
+  origin: "*",
+  methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+}))
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
