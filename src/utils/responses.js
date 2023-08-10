@@ -1,22 +1,25 @@
 class Response {
   success(res, payload) {
-    return res.send({
-      code: 200,
+    const code = 200;
+    return res.status(code).send({
+      code,
       message: "Ok",
       payload,
     });
   }
 
   unknownError(res, err) {
-    return res.send({
-      code: 500,
+    const code = 500;
+    return res.status(code).send({
+      code,
       message: "Internal Server Error",
     });
   }
 
   badRequest(res, errMessage) {
-    return res.send({
-      code: 400,
+    const code = 400;
+    return res.status(code).send({
+      code,
       message: errMessage,
     });
   }
