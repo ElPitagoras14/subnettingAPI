@@ -8,12 +8,20 @@ const fs = require('fs');
 const Response = require("../utils/responses");
 const responses = new Response();
 
+const { validateSchema } = require("../utils/schemaValidator");
+
+
 router.post("/create", (req, res, next) => {
   const { body } = req || {};
 
+  const validation = validateSchema(body, "subnettingSchema");
+
+  if (validation) {
+    return responses.badRequest(res, validation);
+  }
+
   try {
     const strTree = createStrSubnetTree(body);
-    console.log(strTree)
     return responses.success(res, {
       stringTree: strTree,
     });
@@ -26,9 +34,14 @@ router.post("/create", (req, res, next) => {
 router.post("/save", (req, res, next) => {
   const { body } = req || {};
 
+  const validation = validateSchema(body, "subnettingSchema");
+
+  if (validation) {
+    return responses.badRequest(res, validation);
+  }
+
   try {
     const strTree = createStrSubnetTree(body);
-    console.log(strTree)
     const file = "tree.txt";
     return fs.writeFile(file, strTree, (err) => {
       if (err) {

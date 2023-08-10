@@ -13,6 +13,13 @@ class Response {
       message: "Internal Server Error",
     });
   }
+
+  badRequest(res, errMessage) {
+    return res.send({
+      code: 400,
+      message: errMessage,
+    });
+  }
 }
 
 module.exports = Response;

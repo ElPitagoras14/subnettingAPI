@@ -3,11 +3,19 @@ const router = express.Router();
 const { vlsmHost, vlsmSorteredHost } = require("../utils/subnetting");
 const Response = require("../utils/responses");
 const responses = new Response();
+const { validateSchema } = require("../utils/schemaValidator");
 
 router.post("/unsorted", (req, res, next) => {
-  const {
-    body: { ip, mask, hostList },
-  } = req || {};
+  const { body } = req || {};
+
+  const validation = validateSchema(body, "vlsmSchema");
+
+  if (validation) {
+    return responses.badRequest(res, validation);
+  }
+
+  const { ip, mask, hostList } = body || {};
+
   try {
     const response = vlsmHost(ip, mask, hostList);
     return responses.success(res, response);
@@ -18,9 +26,15 @@ router.post("/unsorted", (req, res, next) => {
 });
 
 router.post("/sorted", (req, res, next) => {
-  const {
-    body: { ip, mask, hostList },
-  } = req || {};
+  const { body } = req || {};
+
+  const validation = validateSchema(body, "vlsmSchema");
+
+  if (validation) {
+    return responses.badRequest(res, validation);
+  }
+
+  const { ip, mask, hostList } = body || {};
   try {
     const response = vlsmSorteredHost(ip, mask, hostList);
     return responses.success(res, response);
